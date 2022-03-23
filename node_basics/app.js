@@ -23,10 +23,16 @@ const server = http.createServer((req, res) => {
         return req.on('end', () => {
             const parsedBody = Buffer.concat(body).toString();
             const message = parsedBody.split('=')[1];
-            fs.writeFileSync('message.txt', message);
-            res.statusCode = 302;
-            res.setHeader('Location', '/');
-            return res.end();
+            // writeFileSync is a blocking method
+            // fs.writeFileSync('message.txt', message);
+            // writeFile accepts 3rd argument that catches the error in err otherwise it executes
+            fs.writeFile('message.txt', message, (err) => {
+                res.statusCode = 302;
+                res.setHeader('Location', '/');
+                return res.end();
+            });
+
+
         });
 
     }
