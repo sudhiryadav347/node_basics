@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
+    "start": "nodemon app.js",
     "start-server": "node app.js"
   },
   "repository": {
@@ -17,5 +17,8 @@
     "basics"
   ],
   "author": "sudhir yadav",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
 }
