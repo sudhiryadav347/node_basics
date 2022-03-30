@@ -14,7 +14,7 @@ app.use(express.static(path.join(rootDir, 'public')));
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
-app.use('/admin', adminRoutes.routes);
+app.use('/admin', adminRoutes);
 app.use('/', shopRoutes);
 
 app.use((req, res, next) => {
