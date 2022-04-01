@@ -1,5 +1,7 @@
-<%- include('includes/head.ejs') %> <%- include('includes/navigation.ejs') %>
-
+<%- include('../includes/head.ejs') %> 
+<%- include('../includes/navigation.ejs') %>
+<link rel="stylesheet" href="/css/main.css" />
+<link rel="stylesheet" href="/css/product.css" />
 <main>
 	<h1>My Products</h1>
 	<% if(prods.length > 0 ){ %>
@@ -20,6 +22,8 @@
 				<h2 class="product__price">$19.99</h2>
 				<p class="product__description">
 					A very interesting book about so many even more interesting things!
+					<br />
+					<a href="/product-detail">Details</a>
 				</p>
 			</div>
 			<div class="card__actions">
@@ -34,4 +38,4 @@
 	<% } %>
 </main>
 
-<%- include('includes/end.ejs') %>
+<%- include('../includes/end.ejs') %>
