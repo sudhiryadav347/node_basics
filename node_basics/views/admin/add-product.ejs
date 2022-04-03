@@ -1,0 +1,47 @@
+<%- include('../includes/head.ejs') %> 
+
+<body>
+	<!---start-wrap---->
+	<%- include('../includes/header.ejs') %> 
+	<!--- start-content---->
+	<div class="content">
+		<div class="wrap">
+			<div class="login-left no-border">
+				<h3>ADD NEW PRODUCTS</h3>
+				<p>Add new products from admin panel.</p>
+				<form class="product-form" action="/admin/add-product" method="POST">
+				
+					<div class="form-control">
+						<span>Title<label>*</label></span>
+						<input type="text" name="title" id="title" />
+					</div>
+					<div class="form-control">
+						<span>Image<label>*</label></span>
+						<input type="text" name="image" id="image" />
+					</div>
+					<div class="form-control">
+						<span>Price<label>*</label></span>
+						<input type="number" name="price" id="price" />
+					</div>
+					<div class="form-control">
+						<span>Description<label>*</label></span>
+						<textarea name="description" id="description" cols="50" rows="10">
+		
+						</textarea>
+					</div>
+					<input class="btn" type="submit" value="Add Product">
+				</form>
+			</div>
+			<div class="clear"> </div>
+		</div>
+	</div>
+	<!---- start-bottom-grids---->
+	<%- include('../includes/bottom-grid.ejs') %> 
+	<!---- //End-bottom-grids---->
+	<!--- //End-content---->
+	<!---start-footer---->
+	<%- include('../includes/footer.ejs') %> 
+	<!---//End-footer---->
+	<!---//End-wrap---->
+</body>
+</html>

@@ -1,0 +1,57 @@
+<%- include('../includes/head.ejs') %> 
+
+<body>
+	<!---start-wrap---->
+	<%- include('../includes/header.ejs') %> 
+
+	<!----start-image-slider---->
+	<%- include('../includes/image-slider.ejs') %> 
+
+	<!----//End-image-slider---->
+
+	<!--- start-content---->
+	<div class="content">
+		<div class="wrap">
+			<div class="content-right">
+				<div class="product-grids">
+						<% if(prods.length > 0 ){ %>
+						<% for(let product of prods) {%>
+							<div class="product-grid fade">
+								<div class="product-pic">
+									<a href="#"><img src="/<%= product.image %>" title="product-name" /></a>
+									<p>
+									<a href="#"><%= product.title %></a>
+									<span><%= product.description.substring(0,100) + '...' %></span>
+									</p>
+								</div>
+								<div class="product-info">
+									<div class="product-info-cust admin-edit">
+										<button class="btn" onclick="location.href='edit-product/';" >Edit</button> 
+										<form action="/admin/delete-product" method="POST">
+											<button class="btn" type="submit">Delete</button>
+										</form> 
+										<button class="btn" onclick="location.href('/product-detail')">View</button>
+									</div>
+									<div class="clear"> </div>
+								</div>
+							</div>
+						<% } %>
+						<% } else{ %>
+						<p>No Products Found!</p>
+						<% } %>
+					<div class="clear"> </div>
+				</div>
+			</div>
+			<div class="clear"> </div>
+		</div>
+	</div>
+	<!---- start-bottom-grids---->
+	<%- include('../includes/bottom-grid.ejs') %> 
+	<!---- //End-bottom-grids---->
+	<!--- //End-content---->
+	<!---start-footer---->
+	<%- include('../includes/footer.ejs') %> 
+	<!---//End-footer---->
+	<!---//End-wrap---->
+</body>
+</html>

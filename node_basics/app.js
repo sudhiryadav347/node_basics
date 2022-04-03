@@ -1,10 +1,25 @@
-const http = require('http');
+const path = require('path');
+const express = require('express');
+const bodyParser = require('body-parser');
 
-const routes = require('./routes');
+const app = express();
+const rootDir = require('./util/path');
 
-console.log(routes.someText);
+const adminRoutes = require('./routes/admin');
+const shopRoutes = require('./routes/shop');
 
-const server = http.createServer(routes.handler);
+const pageNotFoundController = require('./controllers/404');
 
-server.listen(3030);
 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(path.join(rootDir, 'public')));
+
+app.set('view engine', 'ejs');
+app.set('views', 'views');
+
+app.use('/admin', adminRoutes);
+app.use('/', shopRoutes);
+
+app.use(pageNotFoundController.pageNotFound);
+
+app.listen(3030);
