@@ -31,10 +31,14 @@ exports.getProducts = (req, res, next) => {
 
 }
 
-
-exports.getPorductDetails = (req, res, next) => {
-    res.render('shop/product-detail', {
-        path: '/product-detail',
-        doctitle: 'Product Details Page.'
+exports.getProduct = (req, res, next) => {
+    const prodId = req.params.productId;
+    Product.findById(prodId, product => {
+        res.render('shop/product-details', {
+            prod: product,
+            doctitle: product.title,
+            path: '/products'
+        });
     });
+
 }

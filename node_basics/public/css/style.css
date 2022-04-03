@@ -1428,7 +1428,7 @@ h2.resp-accordion:first-child {
 	padding: 0.5em 0;
 	border-top: 1px solid #eee;
 	border-bottom: 1px solid #eee;
-	margin-bottom: 1em;
+	margin: 30px 0px;
 	background: url(../images/price-border.png) repeat-y 100% 0%;
 }
 .product-head li {
@@ -3027,4 +3027,12 @@ span.mail a:hover {
 	.product-pic p {
 		padding: 0 1em 1em 1em;
 	}
+}
+
+ul#etalage li{
+	min-height: 100px !important;
+}
+ul#etalage li img{
+	transform: translate(5%, 25%) !important;
+	height: auto !important;
 }

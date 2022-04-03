@@ -13,7 +13,7 @@ router.get('/', productsController.getProducts);
 
 router.get('/products', productsController.getProducts);
 
-router.get('/product-details', productsController.getPorductDetails);
+router.get('/product/:productId', productsController.getProduct);
 
 router.get('/cart', cartController.cart);
 

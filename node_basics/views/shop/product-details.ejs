@@ -16,8 +16,8 @@
 						</ul>
 					<!----details-product-slider--->
 					<!-- Include the Etalage files -->
-						<link rel="stylesheet" href="css/etalage.css">
-						<script src="js/jquery.etalage.min.js"></script>
+						<link rel="stylesheet" href="/css/etalage.css">
+						<script src="/js/jquery.etalage.min.js"></script>
 					<!-- Include the Etalage files -->
 					<script>
 							jQuery(document).ready(function($){
@@ -45,47 +45,23 @@
 							<ul id="etalage">
 								<li>
 									<a href="optionallink.html">
-										<img class="etalage_thumb_image" src="images/product-slide/image1_thumb.jpg" />
-										<img class="etalage_source_image" src="images/product-slide/image1_large.jpg" />
+										<!-- <img class="etalage_thumb_image" src="/<%= prod.image %>" /> -->
+										<img class="etalage_source_image" src="/<%= prod.image %>" />
 									</a>
-								</li>
-								<li>
-									<img class="etalage_thumb_image" src="images/product-slide/image2_thumb.jpg" />
-									<img class="etalage_source_image" src="images/product-slide/image2_large.jpg" />
-								</li>
-								<li>
-									<img class="etalage_thumb_image" src="images/product-slide/image3_thumb.jpg" />
-									<img class="etalage_source_image" src="images/product-slide/image3_large.jpg" />
-								</li>
-								<li>
-									<img class="etalage_thumb_image" src="images/product-slide/image4_thumb.jpg" />
-									<img class="etalage_source_image" src="images/product-slide/image4_large.jpg" />
-								</li>
-								<li>
-									<img class="etalage_thumb_image" src="images/product-slide/image5_thumb.jpg" />
-									<img class="etalage_source_image" src="images/product-slide/image5_large.jpg" />
-								</li>
-								<li>
-									<img class="etalage_thumb_image" src="images/product-slide/image6_thumb.jpg" />
-									<img class="etalage_source_image" src="images/product-slide/image6_large.jpg" />
-								</li>
-								<li>
-									<img class="etalage_thumb_image" src="images/product-slide/image7_thumb.jpg" />
-									<img class="etalage_source_image" src="images/product-slide/image7_large.jpg" />
 								</li>
 							</ul>
 						</div>
 						<div class="details-left-info">
 							<div class="details-right-head">
-							<h1>Product Name Goes Here</h1>
+							<h1><%= prod.title %></h1>
 							<ul class="pro-rate">
 								<li><a class="product-rate" href="#"> <label> </label></a> <span> </span></li>
 								<li><a href="#">0 Review(s) Add Review</a></li>
 							</ul>
-							<p class="product-detail-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+							<p class="product-detail-info"><%= prod.description %></p>
 							<div class="product-more-details">
 								<ul class="price-avl">
-									<li class="price"><label>$145.72</label></li>
+									<li class="price"><label>$<%= prod.price %></label></li>
 									<div class="clear"> </div>
 								</ul>
 								
@@ -113,7 +89,7 @@
 					<div class="wrap">
 					<!--vertical Tabs-script-->
 					<!---responsive-tabs---->
-						<script src="js/easyResponsiveTabs.js" type="text/javascript"></script>
+						<script src="/js/easyResponsiveTabs.js" type="text/javascript"></script>
 						<script type="text/javascript">
 							$(document).ready(function () {
 								 $('#horizontalTab').easyResponsiveTabs({

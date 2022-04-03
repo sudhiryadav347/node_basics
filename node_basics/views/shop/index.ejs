@@ -48,7 +48,7 @@
 							<!---//caption-script---->
 							<% if(prods.length > 0 ){ %>
 							<% for(let product of prods) {%>
-								<div onclick="location.href='details.html';" class="product-grid fade">
+								<div onclick="location.href='/product/<%= product.id %>';" class="product-grid fade">
 									<div class="product-grid-head">
 										<ul class="grid-social">
 											<li><a class="facebook" href="#"><span> </span></a></li>
@@ -69,7 +69,7 @@
 									</div>
 									<div class="product-info">
 										<div class="product-info-cust">
-											<a href="/products/<%= product.id %>">Details</a>
+											<a href="/product/<%= product.id %>">Details</a>
 										</div>
 										<div class="product-info-price">
 											$<%= product.price %>
