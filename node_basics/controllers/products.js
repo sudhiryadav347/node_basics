@@ -35,6 +35,6 @@ exports.getProducts = (req, res, next) => {
 exports.getPorductDetails = (req, res, next) => {
     res.render('shop/product-detail', {
         path: '/product-detail',
-        doctitle: 'Product Detail Page.'
+        doctitle: 'Product Details Page.'
     });
 }

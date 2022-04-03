@@ -1,7 +1,27 @@
-<%- include('../includes/head.ejs') %> <%- include('../includes/navigation.ejs') %>
-<link rel="stylesheet" href="/css/main.css" />
-<main>
-	<h1><%= doctitle %></h1>
-</main>
+<%- include('../includes/head.ejs') %> 
 
-<%- include('../includes/end.ejs') %>
+<body>
+	<!---start-wrap---->
+	<%- include('../includes/header.ejs') %> 
+	
+	<!--- start-content---->
+	<div class="content">
+		<div class="wrap">
+			
+			<div class="content-right">
+				<h1>Checkout Page</h1>
+			</div>
+			<div class="clear"> </div>
+		</div>
+	</div>
+	<!---- start-bottom-grids---->
+	<%- include('../includes/bottom-grid.ejs') %> 
+	<!---- //End-bottom-grids---->
+	<!--- //End-content---->
+	<!---start-footer---->
+	<%- include('../includes/footer.ejs') %> 
+	<!---//End-footer---->
+	<!---//End-wrap---->
+</body>
+</html>
+

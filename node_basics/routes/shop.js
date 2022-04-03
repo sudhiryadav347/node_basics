@@ -11,12 +11,13 @@ const router = express.Router();
 
 router.get('/', productsController.getProducts);
 
-router.get('/product-detail', productsController.getPorductDetails);
+router.get('/products', productsController.getProducts);
+
+router.get('/product-details', productsController.getPorductDetails);
 
 router.get('/cart', cartController.cart);
 
 router.get('/orders', ordersController.orders);
-
 
 router.get('/checkout', checkoutController.checkout);
 

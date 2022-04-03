@@ -1,42 +1,105 @@
-<%- include('../includes/head.ejs') %> 
-<%- include('../includes/navigation.ejs') %>
-<link rel="stylesheet" href="/css/product.css" />
-<main>
-	<h1>My Products</h1>
-	<% if(prods.length > 0 ){ %>
-	<div class="grid">
-		<% for(let product of prods) {%>
-		<!-- <p><%= product.title %></p> -->
-		<article class="card product-item">
-			<header class="card__header">
-				<h1 class="product__title"><%= product.title %></h1>
-			</header>
-			<div class="card__image">
-				<img
-					src="<%= product.image %>"
-					alt="<%= product.title %>"
-				/>
-			</div>
-			<div class="card__content">
-				<h2 class="product__price">$<%= product.price %></h2>
-				<p class="product__description">
-					<%= product.description %>
-					<br />
-					<a href="/product-detail">Details</a>
-				</p>
-			</div>
-			<div class="card__actions">
-				<form action="/add-to-cart/" method="post">
-					<button class="btn" type="submit">Add to Cart</button>
-				</form>
-			</div>
-		</article>
-		<% } %>
-	</div>
+	<%- include('../includes/head.ejs') %> 
 
-	<% } else{ %>
-	<h1>No Products Found!</h1>
-	<% } %>
-</main>
+	<body>
+		<!---start-wrap---->
+		<%- include('../includes/header.ejs') %> 
 
-<%- include('../includes/end.ejs') %>
+		<!----start-image-slider---->
+		<%- include('../includes/image-slider.ejs') %> 
+
+		<!----//End-image-slider---->
+		
+		<!----start-price-rage--->
+		<%- include('../includes/price-range.ejs') %> 
+		<!----//End-price-rage--->
+
+		<!--- start-content---->
+		<div class="content">
+			<div class="wrap">
+				
+				<div class="content-right">
+					<div class="product-grids">
+						<!--- start-rate---->
+							<script src="js/jstarbox.js"></script>
+							<link rel="stylesheet" href="css/jstarbox.css" type="text/css" media="screen" charset="utf-8" />
+							<script type="text/javascript">
+									jQuery(function() {
+										jQuery('.starbox').each(function() {
+											var starbox = jQuery(this);
+											starbox.starbox({
+												average: starbox.attr('data-start-value'),
+												changeable: starbox.hasClass('unchangeable') ? false : starbox.hasClass('clickonce') ? 'once' : true,
+												ghosting: starbox.hasClass('ghosting'),
+												autoUpdateAverage: starbox.hasClass('autoupdate'),
+												buttons: starbox.hasClass('smooth') ? false : starbox.attr('data-button-count') || 5,
+												stars: starbox.attr('data-star-count') || 5
+											}).bind('starbox-value-changed', function(event, value) {
+												if(starbox.hasClass('random')) {
+													var val = Math.random();
+													starbox.next().text(' '+val);
+													return val;
+												} 
+											})
+										});
+									});
+							</script>
+							<!---//End-rate---->
+							<!---caption-script---->
+							<!---//caption-script---->
+							<% if(prods.length > 0 ){ %>
+							<% for(let product of prods) {%>
+								<div onclick="location.href='details.html';" class="product-grid fade">
+									<div class="product-grid-head">
+										<ul class="grid-social">
+											<li><a class="facebook" href="#"><span> </span></a></li>
+											<li><a class="twitter" href="#"><span> </span></a></li>
+											<li><a class="googlep" href="#"><span> </span></a></li>
+											<div class="clear"> </div>
+										</ul>
+										<div class="block">
+											<div class="starbox small ghosting"> </div> <span> (46)</span>
+										</div>
+									</div>
+									<div class="product-pic">
+										<a href="#"><img src="<%= product.image %>" title="product-name" /></a>
+										<p>
+										<a href="#"><%= product.title %></a>
+										<span><%= product.description.substring(0,100) + '...' %></span>
+										</p>
+									</div>
+									<div class="product-info">
+										<div class="product-info-cust">
+											<a href="/products/<%= product.id %>">Details</a>
+										</div>
+										<div class="product-info-price">
+											$<%= product.price %>
+										</div>
+										<div class="clear"> </div>
+									</div>
+									<div class="more-product-info">
+										<form action="/admin/add-to-cart" method="POST">
+											<button type="submit" class="add-to-cart"></button>
+										</form>
+									</div>
+								</div>
+							<% } %>
+							<% } else{ %>
+							<p>No Products Found!</p>
+							<% } %>
+						<div class="clear"> </div>
+					</div>
+				</div>
+				<div class="clear"> </div>
+			</div>
+		</div>
+		<!---- start-bottom-grids---->
+		<%- include('../includes/bottom-grid.ejs') %> 
+		<!---- //End-bottom-grids---->
+		<!--- //End-content---->
+		<!---start-footer---->
+		<%- include('../includes/footer.ejs') %> 
+		<!---//End-footer---->
+		<!---//End-wrap---->
+	</body>
+</html>
+
