@@ -31,6 +31,7 @@ exports.getProducts = (req, res, next) => {
 
 }
 
+
 exports.getPorductDetails = (req, res, next) => {
     res.render('shop/product-detail', {
         path: '/product-detail',
