@@ -9,8 +9,11 @@
 		<div class="wrap">
 			
 			<div class="content-right">
-				<h1>Cart Page</h1>
-				<p><%= prodId %></p>
+				<% if( typeof prodId !== 'undefined' ){ %>
+					<p><%= prodId %></p>
+				<% } else{ %>
+					<p>Cart is empty!</p>
+				<% } %>
 			</div>
 			<div class="clear"> </div>
 		</div>

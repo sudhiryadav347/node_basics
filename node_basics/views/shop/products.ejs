@@ -74,10 +74,7 @@
 										<div class="clear"> </div>
 									</div>
 									<div class="more-product-info">
-										<form action="/cart" method="post">
-											<input type="hidden" name="productId" value="<%= product.id %>">
-											<button type="submit" class="add-to-cart"></button>
-										</form>
+										<%- include('../includes/add-to-cart', {product: product}) %>
 									</div>
 								</div>
 							<% } %>
