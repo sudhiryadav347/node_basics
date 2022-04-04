@@ -1655,7 +1655,7 @@ h2.resp-accordion:first-child {
 .product-colors {
 	padding: 0.5em 0;
 }
-.product-more-details input[type="button"] {
+.product-more-details input[type="button"], .product-more-details button {
 	background: #e45d5d;
 	color: #fff;
 	font-size: 0.8em;

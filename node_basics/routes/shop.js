@@ -11,11 +11,13 @@ const router = express.Router();
 
 router.get('/', productsController.getProducts);
 
-router.get('/products', productsController.getProducts);
+router.get('/products', productsController.products);
 
 router.get('/product/:productId', productsController.getProduct);
 
-router.get('/cart', cartController.cart);
+router.get('/cart', cartController.getcart);
+
+router.post('/cart', cartController.postCart);
 
 router.get('/orders', ordersController.orders);
 

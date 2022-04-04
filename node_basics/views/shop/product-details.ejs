@@ -75,7 +75,11 @@
 										<option>6</option>
 									</select>
 								</ul>
-								<input type="button" value="add to cart" />
+								<form action="/cart" method="post">
+									<input type="hidden" name="productId" value="<%= prod.id %>">
+									<button type="submit">add to cart</button>
+								</form>
+
 							</div>
 						</div>
 						</div>

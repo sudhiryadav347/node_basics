@@ -42,3 +42,14 @@ exports.getProduct = (req, res, next) => {
     });
 
 }
+
+exports.products = (req, res, next) => {
+    Product.fetchAll(products => {
+        res.render('shop/products', {
+            prods: products,
+            doctitle: 'Shop',
+            path: '/products',
+            hasProducts: products.length > 0,
+        });
+    });
+}
