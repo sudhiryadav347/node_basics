@@ -26,7 +26,7 @@ class Product {
     }
 
     save() {
-        this.id = Math.floor(Math.random() * 100).toString;
+        this.id = Math.floor(Math.random() * 100).toString();
         getProductsFromFile(products => {
             products.push(this);
             fs.writeFile(p, JSON.stringify(products), (err) => {
