@@ -65,17 +65,19 @@
 									<div class="clear"> </div>
 								</ul>
 								
-								<ul class="prosuct-qty">
-									<select>
-										<option>1</option>
-										<option>2</option>
-										<option>3</option>
-										<option>4</option>
-										<option>5</option>
-										<option>6</option>
-									</select>
-								</ul>
 								<form action="/cart" method="post">
+									<% if(isSingleProductPage === true) {%>
+										<ul class="prosuct-qty">
+											<select id="qtySelector" name="quantity">
+												<option value="1">1</option>
+												<option value="2">2</option>
+												<option value="3">3</option>
+												<option value="4">4</option>
+												<option value="5">5</option>
+												<option value="6">6</option>
+											</select>
+										</ul>
+									<% } %>
 									<input type="hidden" name="productId" value="<%= prod.id %>">
 									<button type="submit">add to cart</button>
 								</form>

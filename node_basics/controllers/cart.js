@@ -11,8 +11,10 @@ exports.getcart = (req, res, next) => {
 
 exports.postCart = (req, res, next) => {
     const productId = req.body.productId;
+    const prodQty = req.body.quantity;
     Product.findById(productId, product => {
-        Cart.addProduct(productId, product.price);
+        const productPrice = product.price * prodQty;
+        Cart.addProduct(productId, productPrice, prodQty);
         res.render('shop/cart', {
             path: '/cart',
             activeCart: true,

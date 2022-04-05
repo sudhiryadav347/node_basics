@@ -10,14 +10,14 @@ const p = path.join(rootDir,
 
 module.exports = class Cart {
 
-    static addProduct(id, productPrice) {
+    static addProduct(id, productPrice, prodQty) {
 
         let cart = { products: [], totalPrice: 0 };
 
         // Check if file exists => if not then create file with empty cart data
         if (!fs.existsSync(p)) {
             // console.log('file exists.');
-            cart.products = [{ id: id, qty: 1 }];
+            cart.products = [{ id: id, qty: prodQty }];
             cart.totalPrice = +productPrice;
             fs.writeFile(p, JSON.stringify(cart), err => {
                 console.log(err);
@@ -41,7 +41,7 @@ module.exports = class Cart {
 
                         updatedProduct = { ...existingProduct };
 
-                        updatedProduct.qty = existingProduct.qty + 1;
+                        updatedProduct.qty = +existingProduct.qty + +prodQty;
 
                         cart.products = [...cart.products];
 
@@ -49,7 +49,7 @@ module.exports = class Cart {
 
                     } else {
 
-                        updatedProduct = { id: id, qty: 1 };
+                        updatedProduct = { id: id, qty: +prodQty };
 
                         cart.products = [...cart.products, updatedProduct];
 

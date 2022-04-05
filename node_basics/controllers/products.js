@@ -37,7 +37,8 @@ exports.getProduct = (req, res, next) => {
         res.render('shop/product-details', {
             prod: product,
             doctitle: product.title,
-            path: '/products'
+            path: '/products',
+            isSingleProductPage: true
         });
     });
 
