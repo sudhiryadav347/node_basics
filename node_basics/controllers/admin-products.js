@@ -34,3 +34,7 @@ exports.editProduct = (req, res, next) => {
     });
   });
 };
+
+exports.postEditProduct = (req, res, next) => {
+    
+}

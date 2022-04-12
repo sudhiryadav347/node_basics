@@ -35,7 +35,7 @@
 						<span>Description<label>*</label></span>
 						<textarea name="description" id="description" cols="50" rows="10"><% if (editing) { %><%=product.description%><% } %></textarea>
 					</div>
-					<input class="btn" type="submit" value="Add Product">
+					<input class="btn" type="submit" value="<% if (editing) { %>Update Product<% } else { %>Add Product<% } %>">
 				</form>
 			</div>
 			<div class="clear"> </div>
