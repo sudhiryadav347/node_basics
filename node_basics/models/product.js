@@ -29,7 +29,6 @@ class Product {
         );
         const updatedProducts = [...products];
         updatedProducts[existingProductIndex] = this;
-        console.log('updatedProducts', updatedProducts);
         fs.writeFile(p, JSON.stringify(updatedProducts), (err) => {
           console.log(err);
         });
@@ -40,6 +39,15 @@ class Product {
           console.log(err);
         });
       }
+    });
+  }
+
+  static deletebyId(id) {
+    getProductsFromFile((products) => {
+      const updatedProducts = products.filter((p) => p.id !== id);
+      fs.writeFile(p, JSON.stringify(updatedProducts), (err) => {
+        console.log(err);
+      });
     });
   }
 

@@ -30,7 +30,8 @@
 								<div class="product-info">
 									<div class="product-info-cust admin-edit">
 										<button class="btn" onclick="location.href='/admin/edit-product/<%= product.id %>?edit=true';" >Edit</button> 
-										<form action="/admin/delete-product" method="POST">
+										<form action="/admin/product/delete" method="POST">
+											<input type="hidden" name="productId" value="<%= product.id %>" />
 											<button class="btn" type="submit">Delete</button>
 										</form> 
 										<button class="btn" onclick="location.href='/product/<%= product.id %>';">View</button>
