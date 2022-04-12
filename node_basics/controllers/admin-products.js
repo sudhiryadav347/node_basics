@@ -14,12 +14,23 @@ exports.getAdminProducts = (req, res, next) => {
 exports.editProduct = (req, res, next) => {
   const editMode = req.query.edit;
   if (!editMode) {
-    res.redirect('/');
+    return res.redirect('/');
   }
-  res.render('admin/edit-product', {
-    path: '/admin/products',
-    doctitle: 'Edit product',
-    activeEditProduct: true,
-    editing: editMode,
+  const prodId = req.params.productId;
+  Product.findById(prodId, (product) => {
+    if (!product) {
+      res.status(404).render('404.ejs', {
+        doctitle: 'Page Not Found',
+        path: '',
+      });
+      //   return res.redirect('/');
+    }
+    res.render('admin/edit-product', {
+      path: '/admin/products',
+      doctitle: 'Edit product',
+      activeEditProduct: true,
+      editing: editMode,
+      product: product,
+    });
   });
 };
