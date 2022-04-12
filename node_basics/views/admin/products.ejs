@@ -24,6 +24,9 @@
 									<span><%= product.description.substring(0,100) + '...' %></span>
 									</p>
 								</div>
+								<div class="admin-price-box left-align">
+									$<%= product.price %>
+								</div>
 								<div class="product-info">
 									<div class="product-info-cust admin-edit">
 										<button class="btn" onclick="location.href='/admin/product/edit-product/<%= product.id %>?edit=true';" >Edit</button> 
