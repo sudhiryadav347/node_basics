@@ -6,19 +6,19 @@ const cartController = require('../controllers/cart');
 const checkoutController = require('../controllers/checkout');
 const ordersController = require('../controllers/orders');
 
+router
+  .get('/', productsController.getProducts)
 
-router.get('/', productsController.getProducts)
+  .get('/products', productsController.products)
 
-      .get('/products', productsController.products)
+  .get('/product/:productId', productsController.getProduct)
 
-      .get('/product/:productId', productsController.getProduct)
+  .get('/cart', cartController.getcart)
 
-      .get('/cart', cartController.getcart)
+  .post('/cart', cartController.postCart)
 
-      .post('/cart', cartController.postCart)
+  .get('/orders', ordersController.orders)
 
-      .get('/orders', ordersController.orders)
-
-      .get('/checkout', checkoutController.checkout);
+  .get('/checkout', checkoutController.checkout);
 
 module.exports = router;
