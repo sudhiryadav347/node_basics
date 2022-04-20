@@ -1,3 +1,5 @@
+const mongoConnect = require('./util/database');
+
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -10,7 +12,6 @@ const shopRoutes = require('./routes/shop');
 
 const pageNotFoundController = require('./controllers/404');
 
-
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(rootDir, 'public')));
 
@@ -22,4 +23,6 @@ app.use('/', shopRoutes);
 
 app.use(pageNotFoundController.pageNotFound);
 
-app.listen(3030);
+mongoConnect((client) => {
+  app.listen(3000);
+});
