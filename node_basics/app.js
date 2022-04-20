@@ -1,4 +1,4 @@
-const mongoConnect = require('./util/database');
+const mongoConnect = require('./util/database').mongoConnect;
 
 const path = require('path');
 const express = require('express');
@@ -23,6 +23,6 @@ app.use('/', shopRoutes);
 
 app.use(pageNotFoundController.pageNotFound);
 
-mongoConnect((client) => {
+mongoConnect(() => {
   app.listen(3000);
 });

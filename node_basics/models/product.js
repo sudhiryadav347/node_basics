@@ -1,3 +1,4 @@
+const getDb = require('../util/database').getDb;
 const fs = require('fs');
 const path = require('path');
 const Cart = require('./cart');
@@ -23,24 +24,15 @@ class Product {
   }
 
   save() {
-    getProductsFromFile((products) => {
-      if (this.id) {
-        const existingProductIndex = products.findIndex(
-          (prod) => prod.id === this.id
-        );
-        const updatedProducts = [...products];
-        updatedProducts[existingProductIndex] = this;
-        fs.writeFile(p, JSON.stringify(updatedProducts), (err) => {
-          console.log(err);
-        });
-      } else {
-        this.id = Math.floor(Math.random() * 100).toString();
-        products.push(this);
-        fs.writeFile(p, JSON.stringify(products), (err) => {
-          console.log(err);
-        });
-      }
-    });
+    const db = getDb();
+    db.collection('products')
+    .insertOne(this)
+    .then(result => {
+      console.log(result);
+    })
+    .catch(err => {
+      console.log(err);
+    })
   }
 
   static deletebyId(id) {
