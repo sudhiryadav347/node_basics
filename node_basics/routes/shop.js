@@ -17,8 +17,11 @@ router
 
   .post('/cart', cartController.postCart)
 
+  .post('/cart-delete-item', cartController.postCartDeleteProduct)
+
   .get('/orders', ordersController.orders)
 
   .get('/checkout', checkoutController.checkout);
+
 
 module.exports = router;

@@ -32,12 +32,15 @@ exports.postCart = (req, res, next) => {
   Product.findById(productId, (product) => {
     const productPrice = product.price * prodQty;
     Cart.addProduct(productId, productPrice, prodQty);
-    res.redirect('/cart');
-    // res.render('shop/cart', {
-    //   path: '/cart',
-    //   activeCart: true,
-    //   doctitle: 'Cart Page.',
-    //   prodId: productId,
-    // });
+    res.redirect('/cart');  
   });
 };
+
+exports.postCartDeleteProduct = (req, res, next) => {
+  const prodId = req.body.productId;
+  Product.findById(prodId, product => {
+    Cart.deleteProduct(prodId, product.price);
+    res.redirect('/cart');
+  });
+
+}

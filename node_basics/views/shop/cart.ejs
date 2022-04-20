@@ -62,12 +62,20 @@
                         <h5 class="mb-0">$<%= prod.productData.price %></h5>
                       </div>
                       <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                        <a href="#!" class="text-danger">
-                          <ion-icon
-                            name="trash-outline"
-                            size="small"
-                          ></ion-icon>
-                        </a>
+                        <form action="/cart-delete-item" method="POST" id="cart-delete">
+                          <input type="hidden" value="<%= prod.productData.id %>" name="productId">
+                          <a href="#" class="text-danger" onclick="submitDelete()">
+                            <ion-icon
+                              name="trash-outline"
+                              size="small"
+                            ></ion-icon>
+                          </a>
+                        </form>
+                        <script>
+                          function submitDelete() {
+                            document.getElementById('cart-delete').submit();
+                          }
+                        </script>
                       </div>
                     </div>
                   </div>
@@ -81,7 +89,11 @@
           </div>
         </section>
         <% } else{ %>
-        <p>Cart is empty!</p>
+          <p class="d-flex justify-content-center mt-5">
+            <ion-icon name="cart-outline" size="large"></ion-icon>
+</p>
+        <p class="d-flex justify-content-center mb-5">
+          Cart is empty!</p>
         <% } %>
       </div>
       <div class="clear"></div>
