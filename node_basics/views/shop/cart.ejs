@@ -1,31 +1,100 @@
-<%- include('../includes/head.ejs') %> 
+<%- include('../includes/head.ejs') %>
 
 <body>
-	<!---start-wrap---->
-	<%- include('../includes/header.ejs') %> 
-	
-	<!--- start-content---->
-	<div class="content">
-		<div class="wrap">
-			
-			<div class="content-right">
-				<% if( typeof prodId !== 'undefined' ){ %>
-					<p><%= prodId %></p>
-				<% } else{ %>
-					<p>Cart is empty!</p>
-				<% } %>
-			</div>
-			<div class="clear"> </div>
-		</div>
-	</div>
-	<!---- start-bottom-grids---->
-	<%- include('../includes/bottom-grid.ejs') %> 
-	<!---- //End-bottom-grids---->
-	<!--- //End-content---->
-	<!---start-footer---->
-	<%- include('../includes/footer.ejs') %> 
-	<!---//End-footer---->
-	<!---//End-wrap---->
-</body>
-</html>
+  <!---start-wrap---->
+  <%- include('../includes/header.ejs') %>
 
+  <!--- start-content---->
+  <div class="content p-0">
+    <div>
+      <div class="content-right">
+        <% if( product.length > 0 ){ %>
+        <section class="wrap">
+          <div class="h-100 py-5">
+            <div
+              class="row d-flex justify-content-center align-items-center h-100"
+            >
+              <div class="col-12">
+                <% for(let prod of product) {%>
+                <!-- <li><%= prod.productData.title  %> x <%= prod.qty  %></li> -->
+                <div class="card rounded-3 mb-4 cart-item-row">
+                  <div class="card-body p-0">
+                    <div
+                      class="row d-flex justify-content-between align-items-center"
+                    >
+                      <div class="col-md-2 col-lg-2 col-xl-2">
+                        <img
+                          src="<%= prod.productData.image %>"
+                          class="img-fluid align-middle"
+                          alt="Cotton T-shirt"
+                        />
+                      </div>
+                      <div class="col-md-3 col-lg-3 col-xl-3">
+                        <p class="fw-normal mb-2">
+                          <%= prod.productData.title %>
+                        </p>
+                      </div>
+                      <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                        <button
+                          class="btn btn-link px-2"
+                          onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                        >
+                          <i class="fas fa-minus"></i>
+                        </button>
+
+                        <input
+                          id="form1"
+                          min="0"
+                          name="quantity"
+                          value="<%= prod.qty  %>"
+                          type="number"
+                          class="form-control form-control-sm"
+                        />
+
+                        <button
+                          class="btn btn-link px-2"
+                          onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                        >
+                          <i class="fas fa-plus"></i>
+                        </button>
+                      </div>
+                      <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                        <h5 class="mb-0">$<%= prod.productData.price %></h5>
+                      </div>
+                      <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                        <a href="#!" class="text-danger">
+                          <ion-icon
+                            name="trash-outline"
+                            size="small"
+                          ></ion-icon>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <% } %>
+                <div class="product-more-details float-end">
+                  <button type="submit">Proceed To Checkout</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <% } else{ %>
+        <p>Cart is empty!</p>
+        <% } %>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </div>
+
+  <!---- start-bottom-grids---->
+  <%- include('../includes/bottom-grid.ejs') %>
+  <!---- //End-bottom-grids---->
+  <!--- //End-content---->
+  <!---start-footer---->
+  <%- include('../includes/footer.ejs') %>
+  <!---//End-footer---->
+  <!---//End-wrap---->
+  <%- include('../includes/end.ejs') %>
+</body>
