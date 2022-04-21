@@ -16,25 +16,30 @@ exports.postAddProduct = (req, res, next) => {
   const price = req.body.price;
 
   const product = new Product(title, image, description, price);
-  product.save()
-  .then(result => {
-    console.log('Product created!');
-    res.redirect('/');
-  })
-  .catch(err => {
-    console.log(err);
-  })
+  product
+    .save()
+    .then((result) => {
+      console.log('Product created!');
+      res.redirect('/');
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 exports.getProducts = (req, res, next) => {
-  Product.fetchAll((products) => {
-    res.render('shop/index', {
-      prods: products,
-      doctitle: 'Shop',
-      path: '/',
-      hasProducts: products.length > 0,
+  Product.fetchAll()
+    .then((products) => {
+      res.render('shop/index', {
+        prods: products,
+        doctitle: 'Shop',
+        path: '/',
+        hasProducts: products.length > 0,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
     });
-  });
 };
 
 exports.getProduct = (req, res, next) => {
@@ -50,12 +55,16 @@ exports.getProduct = (req, res, next) => {
 };
 
 exports.products = (req, res, next) => {
-  Product.fetchAll((products) => {
-    res.render('shop/products', {
-      prods: products,
-      doctitle: 'Shop',
-      path: '/products',
-      hasProducts: products.length > 0,
+  Product.fetchAll()
+    .then((products) => {
+      res.render('shop/products', {
+        prods: products,
+        doctitle: 'Shop',
+        path: '/products',
+        hasProducts: products.length > 0,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
     });
-  });
 };

@@ -24,14 +24,15 @@ class Product {
 
   save() {
     const db = getDb();
-    return db.collection('products')
-    .insertOne(this)
-    .then(result => {
-      console.log(result);
-    })
-    .catch(err => {
-      console.log(err);
-    });
+    return db
+      .collection('products')
+      .insertOne(this)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   static deletebyId(id) {
@@ -48,8 +49,18 @@ class Product {
     });
   }
 
-  static fetchAll(cb) {
-    getProductsFromFile(cb);
+  static fetchAll() {
+    const db = getDb();
+    return db
+      .collection('products')
+      .find()
+      .toArray()
+      .then((products) => {
+        return products;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   static findById(id, cb) {
