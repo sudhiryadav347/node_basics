@@ -60,7 +60,7 @@ module.exports = class Cart {
         const cart = JSON.parse(fileContent);
         const updatedCart = { ...cart };
         const product = updatedCart.products.find((prod) => prod.id === id);
-        if(!product) {
+        if (!product) {
           return;
         }
         const productQty = product.qty;

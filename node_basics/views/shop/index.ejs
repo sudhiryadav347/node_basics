@@ -48,7 +48,7 @@
 							<!---//caption-script---->
 							<% if(prods.length > 0 ){ %>
 							<% for(let product of prods) {%>
-								<div onclick="location.href='/product/<%= product.id %>';" class="product-grid">
+								<div class="product-grid">
 									<div class="product-grid-head">
 										<ul class="grid-social">
 											<li><a class="facebook" href="#"><span> </span></a></li>
@@ -60,7 +60,7 @@
 											<div class="starbox small ghosting"> </div> <span> (46)</span>
 										</div>
 									</div>
-									<div class="product-pic">
+									<div onclick="location.href='/product/<%= product._id %>';" class="product-pic">
 										<a href="#"><img src="<%= product.image %>" title="product-name" /></a>
 										<p>
 										<a href="#"><%= product.title %></a>
@@ -69,7 +69,7 @@
 									</div>
 									<div class="product-info">
 										<div class="product-info-cust">
-											<a href="/product/<%= product.id %>">Details</a>
+											<a href="/product/<%= product._id %>">Details</a>
 										</div>
 										<div class="product-info-price">
 											$<%= product.price %>

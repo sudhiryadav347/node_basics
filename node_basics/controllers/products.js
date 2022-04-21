@@ -44,14 +44,18 @@ exports.getProducts = (req, res, next) => {
 
 exports.getProduct = (req, res, next) => {
   const prodId = req.params.productId;
-  Product.findById(prodId, (product) => {
-    res.render('shop/product-details', {
-      prod: product,
-      doctitle: product.title,
-      path: '/products',
-      isSingleProductPage: true,
+  Product.findById(prodId)
+    .then((product) => {
+      res.render('shop/product-details', {
+        prod: product,
+        doctitle: product.title,
+        path: '/products',
+        isSingleProductPage: true,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
     });
-  });
 };
 
 exports.products = (req, res, next) => {
