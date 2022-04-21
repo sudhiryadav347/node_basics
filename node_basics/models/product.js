@@ -38,17 +38,17 @@ class Product {
   }
 
   static deletebyId(id) {
-    getProductsFromFile((products) => {
-      const product = products.find((product) => product.id === id);
-      const updatedProducts = products.filter((p) => p.id !== id);
-      fs.writeFile(p, JSON.stringify(updatedProducts), (err) => {
-        if (!err) {
-          Cart.deleteProduct(id, product.price);
-        }
-
-        console.log(err);
-      });
-    });
+    const db = getDb();
+    const prodId = new mongodb.ObjectId(id);
+    return db
+    .collection('products')
+    .deleteOne({ _id: prodId })
+    .then(result => {
+      console.log('deleled');
+    })
+    .catch(err => {
+      console.log(err);
+    })
   }
 
   static fetchAll() {
