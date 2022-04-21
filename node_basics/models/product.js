@@ -17,18 +17,27 @@ const getProductsFromFile = (cb) => {
 };
 
 class Product {
-  constructor(title, image, description, price) {
+  constructor(title, image, description, price, id) {
     this.title = title;
     this.image = image;
     this.description = description;
     this.price = price;
+    this.prodId = new mongodb.ObjectId(id);
   }
 
   save() {
     const db = getDb();
-    return db
-      .collection('products')
-      .insertOne(this)
+    let dbOp;
+    if (this.prodId) {
+      // update existing product
+      dbOp = db
+        .collection('products')
+        .updateOne({ _id: this.prodId }, { $set: this });
+    } else {
+      // create new product
+      dbOp = db.collection('products').insertOne(this);
+    }
+    return dbOp
       .then((result) => {
         console.log(result);
       })
@@ -41,14 +50,14 @@ class Product {
     const db = getDb();
     const prodId = new mongodb.ObjectId(id);
     return db
-    .collection('products')
-    .deleteOne({ _id: prodId })
-    .then(result => {
-      console.log('deleled');
-    })
-    .catch(err => {
-      console.log(err);
-    })
+      .collection('products')
+      .deleteOne({ _id: prodId })
+      .then((result) => {
+        console.log('deleled');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   static fetchAll() {
