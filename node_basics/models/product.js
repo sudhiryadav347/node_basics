@@ -17,12 +17,13 @@ const getProductsFromFile = (cb) => {
 };
 
 class Product {
-  constructor(title, image, description, price, id) {
+  constructor(title, image, description, price, id, userId) {
     this.title = title;
     this.image = image;
     this.description = description;
     this.price = price;
     this.prodId = id ? new mongodb.ObjectId(id) : null;
+    this.userId = userId;
   }
 
   save() {

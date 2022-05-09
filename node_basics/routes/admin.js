@@ -8,6 +8,10 @@ const productsController = require('../controllers/products');
 
 const adminProductsController = require('../controllers/admin-products');
 
+const adminUserController = require('../controllers/users');
+
+// const { route } = require('express/lib/application');
+
 // route for get request to add-product
 router.get('/add-product', productsController.getAddProduct);
 

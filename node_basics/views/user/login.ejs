@@ -1,0 +1,44 @@
+<%- include('../includes/head.ejs') %> 
+
+<body>
+	<!---start-wrap---->
+	<%- include('../includes/header.ejs') %> 
+	<!--- start-content---->
+    <div class="content login-box">
+        <div class="login-main mt-5 pt-5">
+            <div class="wrap">
+                <h1>LOGIN TO YOUR ACCOUNT</h1>
+                <div class="register-grids">
+                    <form action="/user/signup" method="post"> 
+                            <div class="register-top-grid">                                   
+                                    <div>
+                                        <span>Username Or Email<label>*</label></span>
+                                        <input type="text" name="username"> 
+                                    </div>
+                            </div>
+                            <div class="clear"> </div>
+                            <div class="register-bottom-grid">
+                                    <div>
+                                        <span>Password<label>*</label></span>
+                                        <input type="password" name="password">
+                                    </div>
+                                  
+                                    <div class="clear"> </div>
+                            </div>
+                            <div class="clear"> </div>
+                            <input type="submit" value="submit" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+	<!---- start-bottom-grids---->
+	<%- include('../includes/bottom-grid.ejs') %> 
+	<!---- //End-bottom-grids---->
+	<!--- //End-content---->
+	<!---start-footer---->
+	<%- include('../includes/footer.ejs') %> 
+	<!---//End-footer---->
+	<!---//End-wrap---->
+</body>
+</html>
