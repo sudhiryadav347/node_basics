@@ -1,5 +1,8 @@
+const mongodb = require('mongodb');
+const { ObjectId } = require('bson');
 const Product = require('../models/product');
 const Cart = require('../models/cart');
+
 
 exports.getcart = (req, res, next) => {
   Cart.getCart((cart) => {
@@ -29,11 +32,13 @@ exports.getcart = (req, res, next) => {
 exports.postCart = (req, res, next) => {
   const productId = req.body.productId;
   const prodQty = req.body.quantity;
-  Product.findById(productId, (product) => {
-    const productPrice = product.price * prodQty;
-    Cart.addProduct(productId, productPrice, prodQty);
-    res.redirect('/cart');  
-  });
+  Product.findById( new mongodb.ObjectId(productId))
+    .then((product) =>{
+      return req.user.addToCart(product);
+    })
+    .then(result => {
+      console.log(result);
+    });
 };
 
 exports.postCartDeleteProduct = (req, res, next) => {

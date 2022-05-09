@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const Cart = require('./cart');
 const rootDir = require('../util/path');
-const { ObjectID } = require('bson');
+const { ObjectId } = require('bson');
 const p = path.join(rootDir, 'data', 'products.json');
 const getProductsFromFile = (cb) => {
   fs.readFile(p, (err, data) => {
@@ -79,10 +79,9 @@ class Product {
     const db = getDb();
     return db
       .collection('products')
-      .find({ _id: new mongodb.ObjectId(id) })
+      .find({ _id: id })
       .next()
       .then((product) => {
-        console.log(id);
         return product;
       })
       .catch((err) => {
