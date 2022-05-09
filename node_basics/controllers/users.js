@@ -16,8 +16,9 @@ exports.postAddUser = (req, res, next) => {
 	const email = req.body.email;
 	const password = req.body.password;
 	const confirmPassword = req.body.confirmPassword;
+	const cart = { items: [], quantity: 0 }
 
-	const user = new User(firstName, lastName, username, email, password);
+	const user = new User(firstName, lastName, username, email, password, cart);
 	console.log('username', username);
 	console.log('email', email);
 	user
