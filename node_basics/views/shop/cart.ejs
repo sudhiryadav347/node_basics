@@ -8,15 +8,14 @@
   <div class="content p-0">
     <div>
       <div class="content-right">
-        <% if( product.length > 0 ){ %>
+        <% if( products.length > 0 ){ %>
         <section class="wrap">
           <div class="h-100 py-5">
             <div
               class="row d-flex justify-content-center align-items-center h-100"
             >
               <div class="col-12">
-                <% for(let prod of product) {%>
-                <!-- <li><%= prod.productData.title  %> x <%= prod.qty  %></li> -->
+                <% for(let prod of products) {%>
                 <div class="card rounded-3 mb-4 cart-item-row">
                   <div class="card-body p-0">
                     <div
@@ -24,14 +23,14 @@
                     >
                       <div class="col-md-2 col-lg-2 col-xl-2">
                         <img
-                          src="<%= prod.productData.image %>"
+                          src="<%= prod.image %>"
                           class="img-fluid align-middle"
                           alt="Cotton T-shirt"
                         />
                       </div>
                       <div class="col-md-3 col-lg-3 col-xl-3">
                         <p class="fw-normal mb-2">
-                          <%= prod.productData.title %>
+                          <%= prod.title %>
                         </p>
                       </div>
                       <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
@@ -46,7 +45,7 @@
                           id="form1"
                           min="0"
                           name="quantity"
-                          value="<%= prod.qty  %>"
+                          value="<%= prod.quantity %>"
                           type="number"
                           class="form-control form-control-sm"
                         />
@@ -59,11 +58,11 @@
                         </button>
                       </div>
                       <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                        <h5 class="mb-0">$<%= prod.productData.price %></h5>
+                        <h5 class="mb-0">$<%= prod.price %></h5>
                       </div>
                       <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                         <form action="/cart-delete-item" method="POST" id="cart-delete">
-                          <input type="hidden" value="<%= prod.productData.id %>" name="productId">
+                          <input type="hidden" value="<%= prod.id %>" name="productId">
                           <a href="#" class="text-danger" onclick="submitDelete()">
                             <ion-icon
                               name="trash-outline"
