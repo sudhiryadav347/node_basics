@@ -15,6 +15,7 @@ const pageNotFoundController = require('./controllers/404');
 const User = require('./models/user');
 
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
 app.use(express.static(path.join(rootDir, 'public')));
 
 app.set('view engine', 'ejs');
@@ -24,6 +25,7 @@ app.use((req, res, next) => {
 	User.findById('62799043af69d68212b4178d')
 	.then(user => {
 		req.user = new User( user.first_name, user.last_name, user.username, user.email, user.password, user.cart, user._id);
+		console.log('request.user', req.user);
 		next();
 	})
 	.catch(err => {

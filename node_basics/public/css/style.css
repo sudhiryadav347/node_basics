@@ -3070,3 +3070,13 @@ ul#etalage li img {
 .cart-item-row:last-child {
 	border: 0;
 }
+
+.quantity{
+	margin: 4px;
+}
+
+.quantity::-webkit-inner-spin-button, 
+.quantity::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}

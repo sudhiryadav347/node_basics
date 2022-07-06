@@ -1,111 +1,148 @@
 <%- include('../includes/head.ejs') %>
 
 <body>
-  <!---start-wrap---->
-  <%- include('../includes/header.ejs') %>
+	<!---start-wrap---->
+	<%- include('../includes/header.ejs') %>
 
-  <!--- start-content---->
-  <div class="content p-0">
-    <div>
-      <div class="content-right">
-        <% if( products.length > 0 ){ %>
-        <section class="wrap">
-          <div class="h-100 py-5">
-            <div
-              class="row d-flex justify-content-center align-items-center h-100"
-            >
-              <div class="col-12">
-                <% for(let prod of products) {%>
-                <div class="card rounded-3 mb-4 cart-item-row">
-                  <div class="card-body p-0">
-                    <div
-                      class="row d-flex justify-content-between align-items-center"
-                    >
-                      <div class="col-md-2 col-lg-2 col-xl-2">
-                        <img
-                          src="<%= prod.image %>"
-                          class="img-fluid align-middle"
-                          alt="Cotton T-shirt"
-                        />
-                      </div>
-                      <div class="col-md-3 col-lg-3 col-xl-3">
-                        <p class="fw-normal mb-2">
-                          <%= prod.title %>
-                        </p>
-                      </div>
-                      <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                        <button
+	<!--- start-content---->
+	<div class="content p-0">
+		<div>
+			<div class="content-right">
+				<% if( products.length > 0 ){ %>
+				<section class="wrap">
+					<div class="h-100 py-5">
+						<div
+							class="row d-flex justify-content-center align-items-center h-100"
+						>
+							<div class="col-12">
+								<% for(let prod of products) {%>
+								<div class="card rounded-3 mb-4 cart-item-row">
+									<div class="card-body p-0">
+										<div
+											class="row d-flex justify-content-between align-items-center"
+										>
+											<div class="col-md-2 col-lg-2 col-xl-2">
+												<img
+													src="<%= prod.image %>"
+													class="img-fluid align-middle"
+													alt="Cotton T-shirt"
+												/>
+											</div>
+											<div class="col-md-3 col-lg-3 col-xl-3">
+												<p class="fw-normal mb-2"><%= prod.title %></p>
+											</div>
+											<div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+												<!-- <button
                           class="btn btn-link px-2"
                           onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
-                        >
-                          <i class="fas fa-minus"></i>
-                        </button>
+                        > -->
+												<button
+													class="btn btn-link px-2"
+													onclick="reduceQty('<%= prod._id %>')"
+												>
+													<ion-icon name="remove-circle-outline"></ion-icon>
+												</button>
 
-                        <input
-                          id="form1"
-                          min="0"
-                          name="quantity"
-                          value="<%= prod.quantity %>"
-                          type="number"
-                          class="form-control form-control-sm"
-                        />
+												<input
+													id="form1"
+													min="0"
+													name="quantity"
+													value="<%= prod.quantity %>"
+													type="number"
+													class="quantity form-control form-control-sm w-25 text-center stepper"
+												/>
 
-                        <button
-                          class="btn btn-link px-2"
-                          onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-                        >
-                          <i class="fas fa-plus"></i>
-                        </button>
-                      </div>
-                      <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                        <h5 class="mb-0">$<%= prod.price %></h5>
-                      </div>
-                      <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                        <form action="/cart-delete-item" method="POST" id="cart-delete">
-                          <input type="hidden" value="<%= prod.id %>" name="productId">
-                          <a href="#" class="text-danger" onclick="submitDelete()">
-                            <ion-icon
-                              name="trash-outline"
-                              size="small"
-                            ></ion-icon>
-                          </a>
-                        </form>
-                        <script>
-                          function submitDelete() {
-                            document.getElementById('cart-delete').submit();
-                          }
-                        </script>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <% } %>
-                <div class="product-more-details float-end">
-                  <button type="submit">Proceed To Checkout</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <% } else{ %>
-          <p class="d-flex justify-content-center mt-5">
-            <ion-icon name="cart-outline" size="large"></ion-icon>
-</p>
-        <p class="d-flex justify-content-center mb-5">
-          Cart is empty!</p>
-        <% } %>
-      </div>
-      <div class="clear"></div>
-    </div>
-  </div>
+												<!-- <button
+													class="btn btn-link px-2"
+													onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+												> -->
 
-  <!---- start-bottom-grids---->
-  <%- include('../includes/bottom-grid.ejs') %>
-  <!---- //End-bottom-grids---->
-  <!--- //End-content---->
-  <!---start-footer---->
-  <%- include('../includes/footer.ejs') %>
-  <!---//End-footer---->
-  <!---//End-wrap---->
-  <%- include('../includes/end.ejs') %>
+												<button
+													class="btn btn-link px-2"
+													onclick="increaseQty('<%= prod._id %>')"
+												>
+													<ion-icon name="add-circle-outline"></ion-icon>
+												</button>
+											</div>
+											<div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+												<h5 class="mb-0">$<%= prod.price * prod.quantity %></h5>
+											</div>
+											<div class="col-md-1 col-lg-1 col-xl-1 text-end">
+												<form action="/cart-delete-item" method="POST">
+													<input
+														type="hidden"
+														value="<%= prod._id %>"
+														name="productId"
+													/>
+													<a
+														href="#"
+														id="cart-delete"
+														class="text-danger"
+														onclick="submitDelete(event)"
+													>
+														<ion-icon
+															name="trash-outline"
+															size="small"
+														></ion-icon>
+													</a>
+												</form>
+												<script>
+													function submitDelete(event) {
+														event.target.closest('form').submit();
+													}
+
+													function reduceQty(prodId) {
+														fetch('/reduce-item-qty', {
+															method: 'POST',
+															headers: { 'Content-Type': 'application/json' },
+															body: JSON.stringify({ productId: prodId }),
+														}).then((res) => {
+															console.log('response', res);
+															location.reload();
+														});
+													}
+
+													function increaseQty(prodId) {
+														fetch('/increase-item-qty', {
+															method: 'POST',
+															headers: { 'Content-Type': 'application/json' },
+															body: JSON.stringify({ productId: prodId }),
+														}).then((res) => {
+															console.log('response', res);
+															location.reload();
+														});
+													}
+												</script>
+											</div>
+										</div>
+									</div>
+								</div>
+								<% } %>
+								<div class="product-more-details float-end">
+									<button type="submit">Proceed To Checkout</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<% } else{ %>
+				<p class="d-flex justify-content-center mt-5">
+					<ion-icon name="cart-outline" size="large"></ion-icon>
+				</p>
+				<p class="d-flex justify-content-center mb-5">Cart is empty!</p>
+				<% } %>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+
+	<!---- start-bottom-grids---->
+	<%- include('../includes/bottom-grid.ejs') %>
+	<!---- //End-bottom-grids---->
+	<!--- //End-content---->
+	<!---start-footer---->
+	<%- include('../includes/footer.ejs') %>
+	<!---//End-footer---->
+	<!---//End-wrap---->
+	<%- include('../includes/end.ejs') %>
 </body>

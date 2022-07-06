@@ -21,7 +21,10 @@ router
 
   .get('/orders', ordersController.orders)
 
-  .get('/checkout', checkoutController.checkout);
+  .get('/checkout', checkoutController.checkout)
 
+  .post('/reduce-item-qty', cartController.reduceProductQty)
+
+  .post('/increase-item-qty', cartController.increaseProductQty)
 
 module.exports = router;
