@@ -143,9 +143,18 @@ module.exports = class User {
 
 	addOrder() {
 		const db = getDb();
-		return db
-			.collection('orders')
-			.insertOne(this.cart)
+		return this.getCart()
+			.then((products) => {
+				const order = {
+					items: products,
+					user: {
+						_id: new mongodb.ObjectId(this._id),
+						first_name: this.first_name,
+						last_name: this.last_name,
+					},
+				};
+				return db.collection('orders').insertOne(order);
+			})
 			.then((result) => {
 				// clear the cart
 				this.cart = { items: [] };
